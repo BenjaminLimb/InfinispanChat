@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- See https://www.youtube.com/watch?v=ERbyZlyM_d4 -->
+
+<project default="run" name="Infinispan Chat">
+	<target name="clean">
+		<echo>=== CLEAN ===</echo>
+		<delete failonerror="false">
+			<fileset dir="${dest.dir}" includes="**/*" />
+		</delete>
+		<delete dir="${temp.dir}" />
+	</target>
+
+	<target name="jar">
+		<mkdir dir="build/jar" />
+		<jar destfile="build/jar/HelloWorld.jar" basedir="build/classes">
+			<manifest>
+				<attribute name="Main-Class" value="com.benjaminlimb.tutorial.infinispan.Main" />
+			</manifest>
+		</jar>
+	</target>
+
+	<target name="run" depends="compile">
+		<echo>=== RUN ===</echo>
+		<java classname="com.benjaminlimb.antJUnitTutorial.Main">
+			<classpath path="staging" />
+		</java>
+	</target>
+
+	<target name="compile">
+		<echo>=== COMPLIE ===</echo>
+		<mkdir dir="staging" />
+		<javac includeantruntime="false" srcdir="src" destdir="staging" classpath="lib" />
+	</target>
+
+	
+
+</project>
